@@ -1,13 +1,14 @@
-import  Header  from "./components/Header"
-import  Footer  from "./components/Footer"
-import Guitar  from "./components/Guitar"
+//import { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Guitar from "./components/Guitar";
 
 export default function App() {
   return (
     <>
       <Header />
 
-       <main className="container-xl mt-5">
+      <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
         <div className="row mt-5">
           <Guitar />
@@ -18,8 +19,7 @@ export default function App() {
         </div>
       </main>
 
-
       <Footer />
     </>
-  )
+  );
 }
