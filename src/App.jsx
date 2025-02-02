@@ -5,23 +5,40 @@ import Guitar from "./components/Guitar";
 import { db } from "./data/db";
 
 export default function App() {
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState([]);
+	const [data, setData] = useState(db);
+	const [cart, setCart] = useState([]);
 
-  return (
-    <>
-      <Header />
+	function addToCart(item) {
+		const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
+		if (itemExists >= 0) {
+			console.log("El item ya existe en el carrito");
+		} else {
+			console.log("No existe... agregando al carrito");
+			setCart((prevCart) => [...prevCart, item]);
+		}
+	}
 
-      <main className="container-xl mt-5">
-        <h2 className="text-center">Nuestra Colección</h2>
-        <div className="row mt-5">
-          {data.map((guitar) => {
-            return <Guitar key={guitar.id} guitar={guitar} setCart={setCart} />;
-          })}
-        </div>
-      </main>
+	return (
+		<>
+			<Header />
 
-      <Footer />
-    </>
-  );
+			<main className="container-xl mt-5">
+				<h2 className="text-center">Nuestra Colección</h2>
+				<div className="row mt-5">
+					{data.map((guitar) => {
+						return (
+							<Guitar
+								key={guitar.id}
+								guitar={guitar}
+								setCart={setCart}
+								addToCart={addToCart}
+							/>
+						);
+					})}
+				</div>
+			</main>
+
+			<Footer />
+		</>
+	);
 }
